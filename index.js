@@ -13,7 +13,6 @@ import theme from './theme';
 import Wellcome from './app/wellcome';
 import {MemoryTable} from './app/memoryTable';
 
-
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
