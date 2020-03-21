@@ -19,7 +19,7 @@ function getNumber(lettersCount=CONFIG.NUMBER_LENGTH, randomCount =CONFIG.RANDOM
 function getCode(numberAsSting){
   return numberAsSting
   .split('')
-  .map((l, i) =>  MEMORY_MAP.get(+l)[i]).join(" ")
+  .map((l, i) =>  MEMORY_MAP.get(+l)[i]).join(",")
 }
 export {
   getRandom,

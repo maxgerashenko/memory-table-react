@@ -5,6 +5,7 @@ import './style.css';
 import {getNumber, getCode} from './utils/utils';
 import theme from './theme';
 import {CopyRight} from './app/copyRight';
+import NumberAndCode from './app/numberAndCode';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -57,6 +58,9 @@ class App extends Component {
             </Button>
           </div>
         </div> 
+        <NumberAndCode
+          number={this.state.displayNumber}
+          code={this.state.displayCode}/>
         <CopyRight/>
       </ThemeProvider>
     );
