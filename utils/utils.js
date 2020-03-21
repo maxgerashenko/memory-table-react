@@ -1,5 +1,5 @@
 import CONFIG from '../config';
-import MEMORY_MAP from '../memoryMap';
+import MEMORY_MAP from './memoryMap';
 
 function getRandom(max=CONFIG.LETTERS_COUNT) {
   return Math.floor(Math.random() * Math.floor(max));
