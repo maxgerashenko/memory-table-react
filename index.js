@@ -1,35 +1,60 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Hello from './Hello';
+import Wellcome from './wellcome';
 import './style.css';
+import {getNumber, getCode} from './utils';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React',
-      memoryMap: {
-    0: ["Nuton",      "eats",   "a bland Apple"    ],
-    1: ["Tesla",      "drives", "a fresh Car"    ],
-    2: ["Einstein",   "showes", "a Sour Tang"    ],
-    3: ["Chaplin",    "wears",  "salty shoes"    ],
-    4: ["Mozart",     "plays",  "Juicy Music"    ],
-    5: ["Elvis",      "sings",  "Sweet Songs"    ],
-    6: ["Jackson",    "dances", "Spicy Moves"    ],
-    7: ["Armstrong",  "jumps",  "a Cheesy Moon"  ],
-    8: ["Wright",     "flyes",  "Crunchy Plains" ],
-    9: ["Marilyn",    "hides",  "a Ripe Bottom"  ],
-}
+      appName: 'Memory Table',
+      displayNumber: '',
+      displayCode: '',
     };
+
+    this.onShowClick.bind(this);
+    this.onShowCode.bind(this);
+    this.getRandomNumber.bind(this);
+    this.getCode.bind(this);
+  }
+
+  onShowClick() {
+     this.setState(prevState => ({
+      displayNumber: this.getRandomNumber()
+    }));
+  }
+
+  onShowCode() {
+    this.setState(prevState => ({
+      displayCode: this.getCode()
+    }));
+  }
+
+  getRandomNumber() {
+    return getNumber();
+  }
+
+  getCode() {
+    return getCode(this.state.displayNumber);
   }
 
   render() {
     return (
       <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
+        <Wellcome name={this.state.appName} />
+        <div>
+          <button onClick={() =>this.onShowClick()}>Show number</button>
+          <button onClick={ () => this.onShowCode()}>Show result</button>
+        </div>
+        <div>
+          <h2>Number</h2>
+          <label>{this.state.displayNumber}</label> 
+        </div>
+        <div>
+          <h2>Code</h2>
+          <label>{this.state.displayCode}</label> 
+        </div>
       </div>
     );
   }
