@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Wellcome from './wellcome';
 import './style.css';
-import {getNumber, getCode} from './utils';
+import {getNumber, getCode} from './utils/utils';
 import theme from './theme';
-import CopyRight from './copyRight';
+import {CopyRight} from './app/copyRight';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
 
 class App extends Component {
   constructor() {
@@ -19,7 +18,6 @@ class App extends Component {
       displayNumber: '',
       displayCode: '',
     };
-
   }
 
   onShowNumber = () => {
@@ -58,15 +56,7 @@ class App extends Component {
               Show Code
             </Button>
           </div>
-          <div>
-            <h2>Number</h2>
-            <label>{this.state.displayNumber}</label> 
-          </div>
-          <div>
-            <h2>Code</h2>
-            <label>{this.state.displayCode}</label> 
-          </div>
-        </div>
+        </div> 
         <CopyRight/>
       </ThemeProvider>
     );

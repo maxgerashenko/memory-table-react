@@ -1,5 +1,5 @@
-import CONFIG from './config';
-import MEMORY_MAP from './memoryMap';
+import CONFIG from '../config';
+import MEMORY_MAP from '../memoryMap';
 
 function getRandom(max=CONFIG.LETTERS_COUNT) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -24,6 +24,5 @@ function getCode(numberAsSting){
 export {
   getRandom,
   getNumber,
-  getString,
   getCode,
 }
