@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Wellcome from './wellcome';
+import Wellcome from './app/wellcome';
 import './style.css';
 import {getNumber, getCode} from './utils/utils';
 import theme from './theme';
