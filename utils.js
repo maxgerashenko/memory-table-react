@@ -17,16 +17,10 @@ function getNumber(lettersCount=CONFIG.NUMBER_LENGTH, randomCount =CONFIG.RANDOM
 }
 
 function getCode(numberAsSting){
-  console.log(typeof numberAsSting);
   return numberAsSting
   .split('')
-  .map(
-    (l, i) => { 
-      l = +l;
-      console.log(typeof l);
-      return MEMORY_MAP.get(l)[i]}).join(" ")
+  .map((l, i) =>  MEMORY_MAP.get(+l)[i]).join(" ")
 }
-
 export {
   getRandom,
   getNumber,

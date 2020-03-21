@@ -21,7 +21,8 @@ class App extends Component {
 
   onShowClick() {
      this.setState(prevState => ({
-      displayNumber: this.getRandomNumber()
+      displayNumber: this.getRandomNumber(),
+      displayCode: '',
     }));
   }
 
