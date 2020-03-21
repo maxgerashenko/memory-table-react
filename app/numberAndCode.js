@@ -25,11 +25,11 @@ const useStyles = makeStyles(theme => ({
     margin: "auto",
     display: "block",
     maxWidth: "100%",
-    maxHeight: "100%"
+    maxHeight: "100%",
   }
 }));
 
-export default ({ number = "  ", code = ",,," }) => {
+export default ({ number = '', code = '' }) => {
   const classes = useStyles();
 
   const valueTemplate = value => (
@@ -37,9 +37,15 @@ export default ({ number = "  ", code = ",,," }) => {
       <Paper className={classes.paper}>{value}</Paper>
     </Grid>
   );
+    if(number.length){
+      const numbers = number && number.split("").map(valueTemplate);
+    }
 
-  const numbers = number.split("").map(valueTemplate);
-  const codes = code.split(",").map(valueTemplate);
+    if(code.length){
+      const codes = code.split(",").map(valueTemplate);
+    }
+
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>

@@ -1,70 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import Wellcome from './app/wellcome';
-import './style.css';
-import {getNumber, getCode} from './utils/utils';
-import theme from './theme';
-import {CopyRight} from './app/copyRight';
-import NumberAndCode from './app/numberAndCode';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import {
+  CssBaseline, useMediaQuery, Button
+} from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      appName: 'Memory Table',
-      displayNumber: '',
-      displayCode: '',
-    };
-  }
+import './style.css';
+import theme from './theme';
+import Wellcome from './app/wellcome';
+import {MemoryTable} from './app/memoryTable';
 
-  onShowNumber = () => {
-     this.setState(prevState => ({
-      displayNumber: this.getRandomNumber(),
-      displayCode: '',
-    }));
-  }
 
-  onShowCode = () => {
-    this.setState(prevState => ({
-      displayCode: this.getCode()
-    }));
-  }
+function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-  getRandomNumber = () => {
-    return getNumber();
-  }
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: prefersDarkMode ? 'dark' : 'light',
+          // type: 'dark',
+        },
+      }),
+    [prefersDarkMode],
+  );
 
-  getCode = () => {
-    return getCode(this.state.displayNumber);
-  }
-
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <div>
-          <Wellcome name={this.state.appName} />
-          <div>
-            <Button variant="contained" color="primary"
-              onClick={this.onShowNumber}>
-              Show number
-            </Button>
-            <Button variant="contained" color="primary"
-              onClick={this.onShowCode}>
-              Show Code
-            </Button>
-          </div>
-        </div> 
-        <NumberAndCode
-          number={this.state.displayNumber}
-          code={this.state.displayCode}/>
-        <CopyRight/>
-      </ThemeProvider>
-    );
-  }
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Wellcome name="Memory Table" />
+      <MemoryTable />
+    </ThemeProvider>
+  );
 }
 
 render(<App />, document.getElementById('root'));
