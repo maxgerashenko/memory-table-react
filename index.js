@@ -12,6 +12,7 @@ import './style.css';
 import theme from './theme';
 import Wellcome from './app/wellcome';
 import {MemoryTable} from './app/memoryTable';
+import {CountdownTemplate} from './app/countdownTemplate';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -27,11 +28,19 @@ function App() {
     [prefersDarkMode],
   );
 
+  const props = {
+    minutes: 1,
+    seconds: 10,
+  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Wellcome name="Memory Table" />
       <MemoryTable />
+      <CountdownTemplate
+        minutes={props.minutes}
+        seconds={props.seconds}
+      />
     </ThemeProvider>
   );
 }
