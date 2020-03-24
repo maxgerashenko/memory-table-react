@@ -2,14 +2,15 @@ import React, { Component } from "react";
 
 import { Container, Button } from "@material-ui/core";
 
-import NumberAndCode from './numberAndCode';
-import {CopyRight} from './copyRight';
-import {getNumber, getCode} from '../utils/utils';
+import NumberAndCode from "./numberAndCode";
+import { CopyRight } from "./copyRight";
+import { getNumber, getCode } from "../utils/utils";
 
 const STATE_MANAGER = {
   number: "code",
   code: "number",
-}
+  init: "number"
+};
 
 export class MemoryTable extends Component {
   constructor() {
@@ -17,25 +18,31 @@ export class MemoryTable extends Component {
     this.state = {
       displayNumber: "",
       displayCode: "",
-      tableState: "number",
+      tableState: "init"
     };
   }
 
   onNext = () => {
-    console.log('i am here, ', this.state.tableState);
-    switch(this.state.tableState){
-      case "number" : 
+    switch (this.state.tableState) {
+      case "number":
         this.setState(prevState => ({
           displayCode: this.getCode(),
-          tableState: "code",
+          tableState: "code"
         }));
         break;
 
-      case "code" :
+      case "code":
         this.setState(prevState => ({
           displayNumber: this.getRandomNumber(),
           displayCode: "",
-          tableState: "number",
+          tableState: "number"
+        }));
+
+      case "init":
+        this.setState(prevState => ({
+          displayNumber: this.getRandomNumber(),
+          displayCode: "",
+          tableState: "number"
         }));
     }
   };
@@ -50,21 +57,16 @@ export class MemoryTable extends Component {
 
   render() {
     return (
-       <Container maxWidth="sm">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.onNext}
-            >
-              Next
-            </Button>
+      <Container maxWidth="sm">
+        <Button variant="contained" color="primary" onClick={this.onNext}>
+          Next
+        </Button>
         <NumberAndCode
           number={this.state.displayNumber}
           code={this.state.displayCode}
         />
         <CopyRight />
-
-        </Container>
+      </Container>
     );
   }
 }

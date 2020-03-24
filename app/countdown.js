@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+const TIMER_S = 3*60;
+
 export class Countdown extends Component {
   constructor(props) {
     super(props);
-    this.state = { time: {h: 0, m: 0, s: 0}, seconds: 3*60 };
-
-    // this.startTimer = this.startTimer.bind(this);
-    // this.countDown = this.countDown.bind(this);
+    this.state = { time: {h: 0, m: 0, s: 0}, seconds: TIMER_S };
   }
 
   secondsToTime(secs){
@@ -54,6 +53,15 @@ export class Countdown extends Component {
     }
   }
 
+  resetTimer = () => {
+    clearInterval(this.timer);
+    this.setState({
+      seconds: TIMER_S,
+      time: this.secondsToTime(TIMER_S),
+    });
+    this.startTimer();
+  }
+
   componentWillUnmount() {
     clearInterval(this.intervalId);
   }
@@ -62,6 +70,7 @@ export class Countdown extends Component {
     return this.props.children({
       minutes: this.state.time.m,
       seconds: this.state.time.s,
+      onReset: this.resetTimer,
     });
   }
 }

@@ -37,16 +37,16 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Wellcome name="Memory Table" />
-      <MemoryTable />
       <Countdown>
-      {props => (
-        <CountdownTemplate
-          minutes={props.minutes}
-          seconds={props.seconds}
-        />
-      )}
-    </Countdown>
-      
+        {props => (
+          <CountdownTemplate
+            minutes={props.minutes}
+            seconds={props.seconds}
+            onReset={props.onReset}
+          />
+        )}
+      </Countdown>
+      <MemoryTable />
     </ThemeProvider>
   );
 }

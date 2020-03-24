@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {Fab, Paper} from '@material-ui/core';
-import {WatchLaterIcon} from '@material-ui/icons';
+import WatchLaterOutlinedIcon from '@material-ui/icons/WatchLaterOutlined';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -15,20 +15,24 @@ const useStyles = makeStyles((theme) =>
     extendedIcon: {
       marginRight: theme.spacing(1),
     },
+    fab: {
+      textAling: 'right',
+    }
   }),
 );
 
 const CountdownTemplate = props => {
-  const { minutes, seconds } = props;
+  const { minutes, seconds, onReset} = props;
   const classes = useStyles();
+
   return (
-    <Paper>
+    <Paper elevation={1} className={classes.fab}>
       <time
         className="CountdownDisplay"
         dateTime={`H${minutes}M${seconds}S`}
       >
-      <Fab variant="extended" size="medium">
-        <WatchLaterIcon className={classes.extendedIcon} />
+      <Fab variant="extended" size="medium"   onClick={onReset}>
+        <WatchLaterOutlinedIcon className={classes.extendedIcon} />
          {String(minutes).padStart(2, 0)}:{String(seconds).padStart(2, 0)}
       </Fab>
       </time>
