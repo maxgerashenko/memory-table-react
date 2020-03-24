@@ -6,26 +6,38 @@ import NumberAndCode from './numberAndCode';
 import {CopyRight} from './copyRight';
 import {getNumber, getCode} from '../utils/utils';
 
+const STATE_MANAGER = {
+  number: "code",
+  code: "number",
+}
+
 export class MemoryTable extends Component {
   constructor() {
     super();
     this.state = {
       displayNumber: "",
-      displayCode: ""
+      displayCode: "",
+      tableState: "number",
     };
   }
 
-  onShowNumber = () => {
-    this.setState(prevState => ({
-      displayNumber: this.getRandomNumber(),
-      displayCode: ""
-    }));
-  };
+  onNext = () => {
+    console.log('i am here, ', this.state.tableState);
+    switch(this.state.tableState){
+      case "number" : 
+        this.setState(prevState => ({
+          displayCode: this.getCode(),
+          tableState: "code",
+        }));
+        break;
 
-  onShowCode = () => {
-    this.setState(prevState => ({
-      displayCode: this.getCode()
-    }));
+      case "code" :
+        this.setState(prevState => ({
+          displayNumber: this.getRandomNumber(),
+          displayCode: "",
+          tableState: "number",
+        }));
+    }
   };
 
   getRandomNumber = () => {
@@ -42,16 +54,9 @@ export class MemoryTable extends Component {
             <Button
               variant="contained"
               color="primary"
-              onClick={this.onShowNumber}
+              onClick={this.onNext}
             >
-              Show number
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.onShowCode}
-            >
-              Show Code
+              Next
             </Button>
         <NumberAndCode
           number={this.state.displayNumber}
