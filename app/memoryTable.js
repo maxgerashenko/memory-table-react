@@ -5,6 +5,7 @@ import { Container, Button } from "@material-ui/core";
 import NumberAndCode from "./numberAndCode";
 import { CopyRight } from "./copyRight";
 import { getNumber, getCode } from "../utils/utils";
+import { CONFIG } from '../config';
 
 const STATE_MANAGER = {
   number: "code",
@@ -21,6 +22,8 @@ export class MemoryTable extends Component {
       tableState: "init"
     };
   }
+
+  cachedNumbers = [];
 
   onNext = () => {
     switch (this.state.tableState) {
@@ -48,7 +51,18 @@ export class MemoryTable extends Component {
   };
 
   getRandomNumber = () => {
-    return getNumber();
+    let number;
+    do{
+      number = getNumber();
+      console.log(number);
+    } while(this.cachedNumbers.includes(number));
+
+    console.log(this.cachedNumbers);
+    this.cachedNumbers.push(number);
+    if(this.cachedNumbers.length > CONFIG.DONT_REPEAT_COUNT) {
+      this.cachedNumbers.shift();
+    }
+    return number;
   };
 
   getCode = () => {

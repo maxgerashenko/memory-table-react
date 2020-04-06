@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import CONFIG from '../config'
+import { CONFIG } from '../config'
 
 const TIMER_S = CONFIG.RESULT_TIME_DELAY*60;
 

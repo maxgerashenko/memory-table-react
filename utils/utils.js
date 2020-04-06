@@ -1,4 +1,4 @@
-import CONFIG from '../config';
+import { CONFIG } from '../config';
 import MEMORY_MAP from './memoryMap';
 
 function getRandom(max=CONFIG.LETTERS_COUNT) {
