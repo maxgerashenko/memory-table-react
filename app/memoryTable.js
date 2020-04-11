@@ -8,17 +8,16 @@ import { getNumber, getCode } from "../utils/utils";
 import { CONFIG } from '../config';
 
 const STATE_MANAGER = {
-  number: "code",
-  code: "number",
-  init: "number"
+  number: "number",
+  code: "code",
 };
 
 export class MemoryTable extends Component {
   constructor() {
     super();
     this.state = {
-      number: "",
-      tableState: "init"
+      number: this.getRandomNumber(),
+      tableState: "number"
     };
   }
 
@@ -33,12 +32,6 @@ export class MemoryTable extends Component {
         break;
 
       case "code":
-        this.setState(prevState => ({
-          number: this.getRandomNumber(),
-          tableState: "number"
-        }));
-
-      case "init":
         this.setState(prevState => ({
           number: this.getRandomNumber(),
           tableState: "number"
