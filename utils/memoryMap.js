@@ -5,7 +5,7 @@ const MEMORY_MAP = new Map([
     [3, ["Chaplin",    "wears",  "salty shoes"    ]],
     [4, ["Mozart",     "plays",  "juicy music"    ]],
     [5, ["Elvis",      "sings",  "sweet songs"    ]],
-    [6, ["Jackson",    "dances", "Spicy Moves"    ]],
+    [6, ["Jackson",    "dances", "spicy Moves"    ]],
     [7, ["Armstrong",  "jumps",  "cheesy Moon"    ]],
     [8, ["Wright",     "flyes",  "crunchy plains" ]],
     [9, ["Marilyn",    "hides",  "a ripe Bottom"  ]],
