@@ -1,15 +1,17 @@
 import { CONFIG } from '../config';
 import MEMORY_MAP from './memoryMap';
 
-function getRandom(max=CONFIG.LETTERS_COUNT) {
-  return Math.floor(Math.random() * Math.floor(max));
+function getRandomInteger(
+  max = CONFIG.LETTERS_COUNT, 
+  min = CONFIG.LETTERS_COUNT - CONFIG.LETTERS_LEART_AT_ONCE ) {
+  return Math.floor( Math.random() * (max - min + 1) + min );
 }
 
 function getNumber(lettersCount=CONFIG.NUMBER_LENGTH, randomCount =CONFIG.RANDOM_LETTERS) {
   let number = '';
   let random = 0;
   for(let i=0; i < lettersCount; i++) {
-    random = (randomCount - i) > 0 ? getRandom() : random;
+    random = (randomCount - i) > 0 ? getRandomInteger() : random;
     number += random;
   }
 
