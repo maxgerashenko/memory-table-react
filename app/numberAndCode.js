@@ -29,21 +29,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default ({ number = '', code = '' }) => {
+export default ({ code = '', title='' }) => {
   const classes = useStyles();
+  const displayTitle = title.charAt(0).toUpperCase() + title.slice(1);
 
   const valueTemplate = value => (
     <Grid item xs={4} sm={4} md={4}>
       <Paper className={classes.paper}>{value}</Paper>
     </Grid>
   );
-    if(number.length){
-      const numbers = number && number.split("").map(valueTemplate);
-    }
 
-    if(code.length){
-      const codes = code.split(",").map(valueTemplate);
-    }
+  console.log('code', code);
+
+  if(code.length) {
+    const codes = String(code).split(",").map(valueTemplate);
+  }
 
 
   return (
@@ -51,15 +51,7 @@ export default ({ number = '', code = '' }) => {
       <Paper className={classes.paper}>
         <Grid item xs={12}>
           <Typography gutterBottom variant="subtitle1">
-            Number
-          </Typography>
-        </Grid>
-        <Grid item xs container spacing={2}>
-          {numbers}
-        </Grid>
-        <Grid item xs={12}>
-          <Typography gutterBottom variant="subtitle1">
-            Code
+            {displayTitle }
           </Typography>
         </Grid>
         <Grid item xs container spacing={2}>

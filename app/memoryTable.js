@@ -17,8 +17,7 @@ export class MemoryTable extends Component {
   constructor() {
     super();
     this.state = {
-      displayNumber: "",
-      displayCode: "",
+      number: "",
       tableState: "init"
     };
   }
@@ -29,22 +28,19 @@ export class MemoryTable extends Component {
     switch (this.state.tableState) {
       case "number":
         this.setState(prevState => ({
-          displayCode: this.getCode(),
           tableState: "code"
         }));
         break;
 
       case "code":
         this.setState(prevState => ({
-          displayNumber: this.getRandomNumber(),
-          displayCode: "",
+          number: this.getRandomNumber(),
           tableState: "number"
         }));
 
       case "init":
         this.setState(prevState => ({
-          displayNumber: this.getRandomNumber(),
-          displayCode: "",
+          number: this.getRandomNumber(),
           tableState: "number"
         }));
     }
@@ -65,9 +61,17 @@ export class MemoryTable extends Component {
     return number;
   };
 
-  getCode = () => {
-    return getCode(this.state.displayNumber);
-  };
+  getDisplayCode = () => {
+    return (this.state.tableState === STATE_MANAGER.code) ?
+      getCode(this.state.number) :
+      String(this.state.number).split('');
+  }
+
+  getTitle = () => {
+    return this.state.tableState === STATE_MANAGER.code ?
+      'code' :
+      'number';
+  }
 
   render() {
     return (
@@ -76,8 +80,8 @@ export class MemoryTable extends Component {
           Next
         </Button>
         <NumberAndCode
-          number={this.state.displayNumber}
-          code={this.state.displayCode}
+          title={this.getTitle()}
+          code={this.getDisplayCode()}
         />
         <CopyRight />
       </Container>
