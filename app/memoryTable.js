@@ -13,21 +13,15 @@ const STATE_MANAGER = {
   code: 'code',
 };
 
-const styles = (theme) => ({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});
-
-// const styles = makeStyles((theme) =>
-//   createStyles({
-//     container: {
-//       display: 'flex',
-//       flexDirection: 'column',
-//     },
-//   })
-// );
+const styles = (theme) =>
+  createStyles({
+    container: {
+      marginTop: theme.spacing(2),
+      display: 'flex',
+      flexDirection: 'column',
+      gap: `${theme.spacing(2)}px`,
+    },
+  });
 
 class MemoryTable extends Component {
   constructor() {
@@ -85,10 +79,10 @@ class MemoryTable extends Component {
     const { classes } = this.props;
     return (
       <Container maxWidth="sm" className={classes.container}>
+        <NumberAndCode title={this.getTitle()} code={this.getDisplayCode()} />
         <Button variant="contained" color="primary" onClick={this.onNext}>
           Next
         </Button>
-        <NumberAndCode title={this.getTitle()} code={this.getDisplayCode()} />
         <CopyRight />
       </Container>
     );

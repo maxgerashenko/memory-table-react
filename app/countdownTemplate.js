@@ -7,11 +7,6 @@ import WatchLaterOutlinedIcon from '@material-ui/icons/WatchLaterOutlined';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
     extendedIcon: {
       marginRight: theme.spacing(1),
     },
